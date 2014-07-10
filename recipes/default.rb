@@ -34,7 +34,7 @@ def swap_size_mb
   when /^([0-9]+)KB$/i
     $1.to_i / 1024
   when /^([0-9]+)B?$/i
-    $1.to_i / ( 1024 * 1024 )
+    $1.to_i / 1048576
   else
     Chef::Application.fatal!("Unknown swap size: #{size}")
   end.ceil
@@ -59,6 +59,7 @@ unless node['swap_tuning']['file_prefix'].nil?
 
     swap_file "#{node['swap_tuning']['file_prefix']}#{i}" do
       size remaining_size # MBs
+      persist node['swap_tuning']['persist']
       not_if do ::File.exists?("#{node['swap_tuning']['file_prefix']}#{i}") end # not required
     end.run_action(:create)
 

@@ -1,4 +1,3 @@
-# TODO move this to a swap-tuning cookbook?
 
 class Chef
   module SwapTuning
@@ -18,17 +17,17 @@ class Chef
     def self.recommended_size_bytes(memory)
       memory = case memory # get memory in bytes
       when /TB$/i
-        memory.to_i * 1024 * 1024 * 1024
+        memory.to_i * 1099511627776
       when /GB$/i
-        memory.to_i * 1024 * 1024 * 1024
+        memory.to_i * 1073741824
       when /MB$/i
-        memory.to_i * 1024 * 1024
+        memory.to_i * 1048576
       when /KB$/i
         memory.to_i * 1024
       else
         memory
       end
-      memory_gb = memory.to_f / (1024*1024*1024)
+      memory_gb = memory.to_f / 1073741824
       if memory_gb <= 2
         memory * 2
       elsif memory_gb <= 8
@@ -43,7 +42,7 @@ class Chef
 
     def self.recommended_size_mb(memory)
       bytes = recommended_size_bytes(memory)
-      (bytes.to_f / (1024 * 1024)).ceil
+      (bytes.to_f / 1048576).ceil
     end
 
   end
