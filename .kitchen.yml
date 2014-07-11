@@ -9,7 +9,9 @@ provisioner:
 
 platforms:
   - name: ubuntu-12.04
+  - name: debian-7.4
   - name: centos-6.4
+  - name: fedora-19
 
 suites:
   - name: default
