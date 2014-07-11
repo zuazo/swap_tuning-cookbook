@@ -2,6 +2,21 @@
 class Chef
   module SwapTuning
 
+    def self.memory2bytes(memory)
+      case memory
+      when /TB$/i
+        memory.to_i * 1099511627776
+      when /GB$/i
+        memory.to_i * 1073741824
+      when /MB$/i
+        memory.to_i * 1048576
+      when /KB$/i
+        memory.to_i * 1024
+      else
+        memory.to_i
+      end
+    end
+
     # RedHat 7 Recommended Partitioning Scheme (2014-06-20):
     # https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/sect-disk-partitioning-setup-x86.html#sect-recommended-partitioning-scheme-x86
     #
@@ -15,28 +30,17 @@ class Chef
     #
     # TODO: consider the disk space?
     def self.recommended_size_bytes(memory)
-      memory = case memory # get memory in bytes
-      when /TB$/i
-        memory.to_i * 1099511627776
-      when /GB$/i
-        memory.to_i * 1073741824
-      when /MB$/i
-        memory.to_i * 1048576
-      when /KB$/i
-        memory.to_i * 1024
-      else
-        memory
-      end
-      memory_gb = memory.to_f / 1073741824
+      memory_b = memory2bytes(memory)
+      memory_gb = memory_b.to_f / 1073741824
       if memory_gb <= 2
-        memory * 2
+        memory_b * 2
       elsif memory_gb <= 8
-        memory
-      elsif memory <= 64
-        (memory.to_f / 2).ceil
+        memory_b
+      elsif memory_gb <= 64
+        (memory_b.to_f / 2).ceil
       else
         Chef::Log.warn("RAM size too high (#{memory_gb.ceil} GB), I may not be able to choose the best swap size. Best size will be workload dependent.")
-        (memory.to_f / 2).ceil
+        (memory_b.to_f / 2).ceil
       end
     end
 
