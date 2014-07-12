@@ -47,11 +47,12 @@ platforms:
     flavor: 512MB
     region: Amsterdam 2
 
-- name: archlinux-2013.05
-  driver_plugin: digitalocean
-  driver_config:
-    flavor: 512MB
-    region: Amsterdam 2
+# TODO: chef needs to be installed by hand
+# - name: archlinux-2013.05
+#   driver_plugin: digitalocean
+#   driver_config:
+#     flavor: 512MB
+#     region: Amsterdam 2
 
 - name: amazon-2011.02.1
   driver_plugin: ec2
