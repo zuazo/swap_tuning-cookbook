@@ -24,22 +24,25 @@ unless node['swap_tuning']['file_prefix'].nil?
   # Calculate swap size
   if node['swap_tuning']['size'].nil?
     node.default['swap_tuning']['size'] = Chef::SwapTuning.recommended_size_mb(node['memory']['total'])
-    unless node['swap_tuning']['minimum_size'].nil?
-      if node['swap_tuning']['size'] < node['swap_tuning']['minimum_size']
-        node.default['swap_tuning']['size'] = node['swap_tuning']['minimum_size']
-      end
+    if !node['swap_tuning']['minimum_size'].nil? &&
+       node['swap_tuning']['size'] < node['swap_tuning']['minimum_size']
+      node.default['swap_tuning']['size'] = node['swap_tuning']['minimum_size']
     end
   end
 
   i = 0
   current_size = swap_size_mb
-  while current_size + 10 < node['swap_tuning']['size'] and i < 10 # margin of 10 MB
+  # margin of 10 MB and 10 swapfiles maximum
+  while current_size + 10 < node['swap_tuning']['size'] && i < 10
     remaining_size = node['swap_tuning']['size'] - current_size
 
     swap_file "#{node['swap_tuning']['file_prefix']}#{i}" do
       size remaining_size # MBs
       persist node['swap_tuning']['persist']
-      not_if do ::File.exists?("#{node['swap_tuning']['file_prefix']}#{i}") end # not required
+      not_if do
+        # not required
+        ::File.exist?("#{node['swap_tuning']['file_prefix']}#{i}")
+      end
     end.run_action(:create)
 
     i += 1

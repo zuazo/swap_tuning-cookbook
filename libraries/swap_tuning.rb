@@ -1,53 +1,50 @@
+require 'chef/application'
 
 class Chef
+  # Methods to recommend swap sizes depending on memory values
   module SwapTuning
-
     def self.memory2bytes(memory)
-      case memory
-      when /TB$/i
-        memory.to_i * 1099511627776
-      when /GB$/i
-        memory.to_i * 1073741824
-      when /MB$/i
-        memory.to_i * 1048576
-      when /KB$/i
-        memory.to_i * 1024
-      else
-        memory.to_i
+      case memory.to_s
+      when /^([0-9]+)GB$/i then Regexp.last_match[1].to_i * 1_073_741_824
+      when /^([0-9]+)MB$/i then Regexp.last_match[1].to_i * 1_048_576
+      when /^([0-9]+)KB$/i then Regexp.last_match[1].to_i * 1024
+      when /^([0-9]+)B?$/i then Regexp.last_match[1].to_i
+      when nil then 0
+      else Chef::Application.fatal!("Unknown size: #{memory}")
       end
     end
 
-    # RedHat 7 Recommended Partitioning Scheme (2014-06-20):
-    # https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/sect-disk-partitioning-setup-x86.html#sect-recommended-partitioning-scheme-x86
-    #
-    # RAM             Recommended swap
-    # =< 2 GB         2 x RAM
-    # > 2 GB – 8 GB   = RAM
-    # > 8 GB – 64 GB  0.5 x RAM
-    # > 64 GB         workload dependent
-    #
-    # Ubuntu recommendations: https://help.ubuntu.com/community/SwapFaq#How_much_swap_do_I_need.3F
-    #
-    # TODO: consider the disk space?
+    def self.memory2mbytes(memory)
+      memory2bytes(memory).to_f / 1_048_576
+    end
+
+    def self.memory2gbytes(memory)
+      memory2mbytes(memory) / 1024
+    end
+
+    def self.unknown_size_check(memory)
+      Chef::Log.warn(
+        "RAM size too high (#{memory2gbytes(memory).round} GB), "\
+        'I may not be able to choose the best swap size. Best size will be'\
+        'workload dependent.'
+      ) if memory > 68_719_476_736 # 64 GB
+    end
+
     def self.recommended_size_bytes(memory)
       memory_b = memory2bytes(memory)
-      memory_gb = memory_b.to_f / 1073741824
-      if memory_gb <= 2
+      unknown_size_check(memory_b)
+      if memory_b <= 2_147_483_648 # 2 GB
         memory_b * 2
-      elsif memory_gb <= 8
+      elsif memory_b <= 8_589_934_592 # 8 GB
         memory_b
-      elsif memory_gb <= 64
-        (memory_b.to_f / 2).ceil
       else
-        Chef::Log.warn("RAM size too high (#{memory_gb.ceil} GB), I may not be able to choose the best swap size. Best size will be workload dependent.")
         (memory_b.to_f / 2).ceil
       end
     end
 
     def self.recommended_size_mb(memory)
       bytes = recommended_size_bytes(memory)
-      (bytes.to_f / 1048576).ceil
+      (bytes.to_f / 1_048_576).ceil
     end
-
   end
 end

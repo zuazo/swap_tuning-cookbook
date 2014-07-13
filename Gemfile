@@ -5,12 +5,14 @@ source 'https://rubygems.org'
 
 group :test, :development do
   gem 'rake'
+  gem 'rspec', '~> 3.0'
 end
 
 group :test do
   gem 'berkshelf', '~> 2.0'
   gem 'chefspec', '~> 4.0'
   gem 'foodcritic', '~> 4.0'
+  gem 'rubocop', '~> 0.24'
 end
 
 group :integration, :kitchen do

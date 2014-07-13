@@ -25,18 +25,21 @@ describe Chef::SwapTuning do
 
     {
       '256' => 256,
-      '256BAD' => 256,
       '256KB' => 256 * KB,
       '256MB' => 256 * MB,
-      '256GB' => 256 * GB,
-      '256TB' => 256 * TB,
-     }.each do |memory, bytes|
+      '256GB' => 256 * GB
+    }.each do |memory, bytes|
 
-        it "should convert #{memory} to #{bytes}" do
-          expect(described_class.memory2bytes(memory)).to eq(bytes)
-        end
-
+      it "should convert #{memory} to #{bytes}" do
+        expect(described_class.memory2bytes(memory)).to eq(bytes)
       end
+
+    end
+
+    it 'should not convert unknown memory values' do
+      expect { described_class.memory2bytes('256BAD') }
+        .to raise_error(SystemExit)
+    end
 
   end # describe #memory2bytes
 
@@ -50,9 +53,9 @@ describe Chef::SwapTuning do
       7.9 * GB  => 7.9 * GB,
       8.1 * GB  => 8.1 * GB / 2,
       '10GB'    => 5 * GB,
-      '100GB'   => 50 * GB,
+      '100GB'   => 50 * GB
     }.each do |memory, swap|
-      memory = memory.kind_of?(Numeric) ? memory.round : memory
+      memory = memory.is_a?(Numeric) ? memory.round : memory
       swap = swap.floor
 
       it "should recommend #{swap} swap size with #{memory} memory" do
@@ -63,14 +66,14 @@ describe Chef::SwapTuning do
 
       if described_class.memory2bytes(memory) <= 64 * GB
 
-        it "should not print any warning if #{memory} RAM size is not too high" do
+        it "should warn if #{memory} RAM size is not too high" do
           expect(Chef::Log).not_to receive(:warn)
           described_class.recommended_size_bytes(memory)
         end
 
       else
 
-        it "should print a warning if #{memory} RAM size is too high" do
+        it "should not warn if #{memory} RAM size is too high" do
           expect(Chef::Log).to receive(:warn).once
           described_class.recommended_size_bytes(memory)
         end
@@ -85,8 +88,10 @@ describe Chef::SwapTuning do
 
     it 'should return #recommended_size_bytes result in MB' do
       memory = 4 * GB
-      expect(described_class).to receive(:recommended_size_bytes).once.with(memory).and_return(memory)
-      expect(described_class.recommended_size_mb(memory)).to eql(memory / (1024 * 1024).ceil)
+      expect(described_class).to receive(:recommended_size_bytes).once
+        .with(memory).and_return(memory)
+      expect(described_class.recommended_size_mb(memory))
+        .to eql(memory / (1024 * 1024).ceil)
     end
 
   end # describe #recommended_size_mb

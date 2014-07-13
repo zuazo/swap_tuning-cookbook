@@ -19,8 +19,9 @@
 KB = 1024
 MB = 1024 * KB
 GB = 1024 * MB
-TB = 1024 * GB
 
+# Some test helpers related with system memory and swap files.
+# Translates bytes to values used by real systems.
 module MemoryHelpers
   def system_memory(bytes)
     "#{(bytes / 1024).round}kB"

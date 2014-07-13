@@ -31,7 +31,7 @@ describe 'swap_tuning::default' do
 
     it 'should reload ohai memory plugin' do
       expect(chef_run).to reload_ohai('reload_memory').with(
-        plugin: 'memory',
+        plugin: 'memory'
       ).at_compile_time
     end
 
@@ -43,19 +43,17 @@ describe 'swap_tuning::default' do
   end # shared_examples_for a machine in need of swap
 
   describe 'with 1 GB memory and 0 GB swap' do
-    it_should_behave_like 'a machine in need of swap', {
-      :memory => system_memory(1 * GB),
-      :current_swap => 0,
-      :new_swap => swap_file_size(2 * GB),
-    }
+    it_should_behave_like 'a machine in need of swap',
+                          memory: system_memory(1 * GB),
+                          current_swap: 0,
+                          new_swap: swap_file_size(2 * GB)
   end
 
   describe 'with 3 GB memory and 1 GB swap' do
-    it_should_behave_like 'a machine in need of swap', {
-      :memory => system_memory(3 * GB),
-      :current_swap => system_swap(1 * GB),
-      :new_swap => swap_file_size(2 * GB),
-    }
+    it_should_behave_like 'a machine in need of swap',
+                          memory: system_memory(3 * GB),
+                          current_swap: system_swap(1 * GB),
+                          new_swap: swap_file_size(2 * GB)
   end
 
 end

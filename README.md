@@ -57,6 +57,10 @@ Let us know if you use it successfully on any other platform.
 
 * [swap](https://supermarket.getchef.com/cookbooks/swap)
 
+## Applications:
+
+* Ruby 1.9 or higher.
+
 Attributes
 ==========
 
@@ -136,6 +140,7 @@ Testing
 
 * `vagrant`
 * `foodcritic`
+* `rubocop`
 * `berkshelf`
 * `chefspec`
 * `test-kitchen`
