@@ -59,7 +59,7 @@ Let us know if you use it successfully on any other platform.
 
 ## Applications:
 
-* Ruby 1.9 or higher.
+* Ruby 1.9.3 or higher.
 
 Attributes
 ==========
