@@ -68,9 +68,9 @@ Attributes
 
 <table>
   <tr>
-    <td>Attribute</td>
-    <td>Description</td>
-    <td>Default</td>
+    <th>Attribute</th>
+    <th>Description</th>
+    <th>Default</th>
   </tr>
   <tr>
     <td><code>node['swap_tuning']['size']</code></td>
