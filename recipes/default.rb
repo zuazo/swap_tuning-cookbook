@@ -2,7 +2,7 @@
 # Cookbook Name:: swap_tuning
 # Recipe:: default
 #
-# Copyright 2014, Onddo Labs, Sl.
+# Copyright 2014, Onddo Labs, SL.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
