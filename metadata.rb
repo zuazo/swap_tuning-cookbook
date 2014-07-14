@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 name 'swap_tuning'
 maintainer 'Onddo Labs, Sl.'
 maintainer_email 'team@onddo.com'
