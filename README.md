@@ -12,6 +12,7 @@ This can be considered a general purpose cookbook but certainly not recommended 
 Swap size is chosen based on the following documentation:
 
 * [RedHat 7 Recommended Partitioning Scheme](https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/sect-disk-partitioning-setup-x86.html#sect-recommended-partitioning-scheme-x86)
+
 <table>
   <tr>
     <th>RAM Size</th>
