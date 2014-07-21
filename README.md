@@ -47,12 +47,13 @@ Requirements
 
 This cookbook has been tested on the following platforms:
 
+* Amazon
 * Arch Linux
 * CentOS
 * Debian
 * Fedora
+* RedHat
 * Ubuntu
-* Amazon
 
 Let us know if you use it successfully on any other platform.
 

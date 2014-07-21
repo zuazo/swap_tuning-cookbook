@@ -10,12 +10,13 @@ EOS
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version '0.2.0' # WiP
 
+supports 'amazon'
 supports 'arch'
 supports 'centos'
 supports 'debian'
 supports 'fedora'
+supports 'redhat'
 supports 'ubuntu'
-supports 'amazon'
 
 depends 'swap'
 
