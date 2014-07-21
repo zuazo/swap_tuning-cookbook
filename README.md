@@ -140,19 +140,19 @@ Another alternative is to include it in your Run List:
 Testing
 =======
 
-See [TESTING.md](https://github.com/onddo/mysql_tuning-cookbook/blob/master/TESTING.md).
+See [TESTING.md](https://github.com/onddo/swap_tuning-cookbook/blob/master/TESTING.md).
 
 Contributing
 ============
 
-Please do not hesitate to [open an issue](https://github.com/onddo/mysql_tuning-cookbook/issues/new) with any questions or problems.
+Please do not hesitate to [open an issue](https://github.com/onddo/swap_tuning-cookbook/issues/new) with any questions or problems.
 
-See [CONTRIBUTING.md](https://github.com/onddo/mysql_tuning-cookbook/blob/master/CONTRIBUTING.md).
+See [CONTRIBUTING.md](https://github.com/onddo/swap_tuning-cookbook/blob/master/CONTRIBUTING.md).
 
 TODO
 ====
 
-See [TODO.md](https://github.com/onddo/mysql_tuning-cookbook/blob/master/TODO.md).
+See [TODO.md](https://github.com/onddo/swap_tuning-cookbook/blob/master/TODO.md).
 
 License and Author
 ==================
