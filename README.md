@@ -55,7 +55,7 @@ This cookbook has been tested on the following platforms:
 * RedHat
 * Ubuntu
 
-Let us know if you use it successfully on any other platform.
+Please, [let us know](https://github.com/onddo/swap_tuning-cookbook/issues/new?title=I%20have%20used%20it%20successfully%20on%20...) if you use it successfully on any other platform.
 
 ## Cookbooks:
 
@@ -140,84 +140,19 @@ Another alternative is to include it in your Run List:
 Testing
 =======
 
-## Requirements
-
-* `vagrant`
-* `foodcritic`
-* `rubocop`
-* `berkshelf`
-* `chefspec`
-* `test-kitchen`
-* `kitchen-vagrant`
-
-You must have [VirtualBox](https://www.virtualbox.org/) and [Vagrant](http://www.vagrantup.com/) installed.
-
-You can install gem dependencies with bundler:
-
-    $ gem install bundler
-    $ bundle install
-
-## Running the Syntax Style Tests
-
-    $ bundle exec rake style
-
-## Running the Unit Tests
-
-    $ bundle exec rake unit
-
-## Running the Integration Tests
-
-    $ bundle exec rake integration
-
-Or:
-
-    $ bundle exec kitchen list
-    $ bundle exec kitchen test
-    [...]
-
-### Running Integration Tests in the Cloud
-
-#### Requirements:
-
-* `kitchen-vagrant`
-* `kitchen-digitalocean`
-* `kitchen-ec2`
-
-You can run the tests in the cloud instead of using vagrant. First, you must set the following environment variables:
-
-* `AWS_ACCESS_KEY_ID`
-* `AWS_SECRET_ACCESS_KEY`
-* `AWS_KEYPAIR_NAME`: EC2 SSH public key name. This is the name used in Amazon EC2 Console's Key Pars section.
-* `EC2_SSH_KEY_PATH`: EC2 SSH private key local full path. Only when you are not using an SSH Agent.
-* `DIGITALOCEAN_CLIENT_ID`
-* `DIGITALOCEAN_API_KEY`
-* `DIGITALOCEAN_SSH_KEY_IDS`: DigitalOcean SSH numeric key IDs.
-* `DIGITALOCEAN_SSH_KEY_PATH`: DigitalOcean SSH private key local full path. Only when you are not using an SSH Agent.
-
-Then, you must configure test-kitchen to use `.kitchen.cloud.yml` configuration file:
-
-    $ export KITCHEN_LOCAL_YAML=".kitchen.cloud.yml"
-    $ bundle exec kitchen list
-    [...]
+See [TESTING.md](https://github.com/onddo/mysql_tuning-cookbook/blob/master/TESTING.md).
 
 Contributing
 ============
 
-1. [Fork the repository on Github](https://help.github.com/articles/fork-a-repo).
-2. Create a named feature branch (`$ git checkout -b my-new-feature`).
-3. Write your change.
-4. Write tests for your change (if applicable).
-5. Run the tests, ensuring they all pass (`$ bundle exec rake`).
-6. Commit your change (`$ git commit -am 'Add some feature'`).
-7. Push to the branch (`$ git push origin my-new-feature`).
-8. [Submit a Pull Request using Github](https://help.github.com/articles/creating-a-pull-request).
+Please do not hesitate to [open an issue](https://github.com/onddo/mysql_tuning-cookbook/issues/new) with any questions or problems.
+
+See [CONTRIBUTING.md](https://github.com/onddo/mysql_tuning-cookbook/blob/master/CONTRIBUTING.md).
 
 TODO
 ====
 
-* Consider the available disk space.
-* Distribute files among different disks.
-* Set swappiness.
+See [TODO.md](https://github.com/onddo/mysql_tuning-cookbook/blob/master/TODO.md).
 
 License and Author
 ==================
