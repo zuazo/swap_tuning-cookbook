@@ -23,11 +23,11 @@ Swap size is chosen based on the following documentation:
     <td>2 &times; RAM</td>
   </tr>
   <tr>
-    <td>2 GB – 8 GB</td>
+    <td>2 GB - 8 GB</td>
     <td>= RAM</td>
   </tr>
   <tr>
-    <td>8 GB – 64 GB</td>
+    <td>8 GB - 64 GB</td>
     <td>&frac12; &times; RAM</td>
   </tr>
   <tr>
