@@ -3,7 +3,7 @@ Description
 [![Cookbook Version](https://img.shields.io/cookbook/v/swap_tuning.svg?style=flat)](https://supermarket.getchef.com/cookbooks/swap_tuning)
 [![Dependency Status](http://img.shields.io/gemnasium/onddo/swap_tuning-cookbook.svg?style=flat)](https://gemnasium.com/onddo/swap_tuning-cookbook)
 [![Code Climate](http://img.shields.io/codeclimate/github/onddo/swap_tuning-cookbook.svg?style=flat)](https://codeclimate.com/github/onddo/swap_tuning-cookbook)
-[![Build Status](http://img.shields.io/travis/onddo/swap_tuning-cookbook/0.1.0.svg?style=flat)](https://travis-ci.org/onddo/swap_tuning-cookbook)
+[![Build Status](http://img.shields.io/travis/onddo/swap_tuning-cookbook.svg?style=flat)](https://travis-ci.org/onddo/swap_tuning-cookbook)
 
 Chef cookbook to create a swap file of the recommended size considering the system memory.
 
@@ -12,6 +12,7 @@ This can be considered a general purpose cookbook but certainly not recommended 
 Swap size is chosen based on the following documentation:
 
 * [RedHat 7 Recommended Partitioning Scheme](https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/sect-disk-partitioning-setup-x86.html#sect-recommended-partitioning-scheme-x86)
+
 <table>
   <tr>
     <th>RAM Size</th>
@@ -22,11 +23,11 @@ Swap size is chosen based on the following documentation:
     <td>2 &times; RAM</td>
   </tr>
   <tr>
-    <td>2 GB – 8 GB</td>
+    <td>2 GB - 8 GB</td>
     <td>= RAM</td>
   </tr>
   <tr>
-    <td>8 GB – 64 GB</td>
+    <td>8 GB - 64 GB</td>
     <td>&frac12; &times; RAM</td>
   </tr>
   <tr>
@@ -46,14 +47,15 @@ Requirements
 
 This cookbook has been tested on the following platforms:
 
+* Amazon
 * Arch Linux
 * CentOS
 * Debian
 * Fedora
+* RedHat
 * Ubuntu
-* Amazon
 
-Let us know if you use it successfully on any other platform.
+Please, [let us know](https://github.com/onddo/swap_tuning-cookbook/issues/new?title=I%20have%20used%20it%20successfully%20on%20...) if you use it successfully on any other platform.
 
 ## Cookbooks:
 
@@ -138,82 +140,19 @@ Another alternative is to include it in your Run List:
 Testing
 =======
 
-## Requirements
-
-* `vagrant`
-* `foodcritic`
-* `rubocop`
-* `berkshelf`
-* `chefspec`
-* `test-kitchen`
-* `kitchen-vagrant`
-
-You must have [VirtualBox](https://www.virtualbox.org/) and [Vagrant](http://www.vagrantup.com/) installed.
-
-You can install gem dependencies with bundler:
-
-    $ gem install bundler
-    $ bundle install
-
-## Running the Syntax Style Tests
-
-    $ bundle exec rake style
-
-## Running the Unit Tests
-
-    $ bundle exec rake unit
-
-## Running the Integration Tests
-
-    $ bundle exec rake integration
-
-Or:
-
-    $ bundle exec kitchen list
-    $ bundle exec kitchen test
-    [...]
-
-### Running Integration Tests in the Cloud
-
-#### Requirements:
-
-* `kitchen-vagrant`
-* `kitchen-digitalocean`
-* `kitchen-ec2`
-
-You can run the tests in the cloud instead of using vagrant. First, you must set the following environment variables:
-
-* `AWS_ACCESS_KEY_ID`
-* `AWS_SECRET_ACCESS_KEY`
-* `AWS_KEYPAIR_NAME`: EC2 SSH public key name. This is the name used in Amazon EC2 Console's Key Pars section.
-* `EC2_SSH_KEY_PATH`: EC2 SSH private key local full path. Only when you are not using an SSH Agent.
-* `DIGITALOCEAN_CLIENT_ID`
-* `DIGITALOCEAN_API_KEY`
-* `DIGITALOCEAN_SSH_KEY_IDS`: DigitalOcean SSH numeric key IDs.
-* `DIGITALOCEAN_SSH_KEY_PATH`: DigitalOcean SSH private key local full path. Only when you are not using an SSH Agent.
-
-Then, you must configure test-kitchen to use `.kitchen.cloud.yml` configuration file:
-
-    $ export KITCHEN_LOCAL_YAML=".kitchen.cloud.yml"
-    $ bundle exec kitchen list
-    [...]
+See [TESTING.md](https://github.com/onddo/swap_tuning-cookbook/blob/master/TESTING.md).
 
 Contributing
 ============
 
-1. [Fork the repository on Github](https://help.github.com/articles/fork-a-repo).
-2. Create a named feature branch (`$ git checkout -b my-new-feature`).
-3. Write your change.
-4. Write tests for your change (if applicable).
-5. Run the tests, ensuring they all pass (`$ bundle exec rake`).
-6. Commit your change (`$ git commit -am 'Add some feature'`).
-7. Push to the branch (`$ git push origin my-new-feature`).
-8. [Submit a Pull Request using Github](https://help.github.com/articles/creating-a-pull-request).
+Please do not hesitate to [open an issue](https://github.com/onddo/swap_tuning-cookbook/issues/new) with any questions or problems.
+
+See [CONTRIBUTING.md](https://github.com/onddo/swap_tuning-cookbook/blob/master/CONTRIBUTING.md).
 
 TODO
 ====
 
-* Consider the available disk space.
+See [TODO.md](https://github.com/onddo/swap_tuning-cookbook/blob/master/TODO.md).
 
 License and Author
 ==================

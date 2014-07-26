@@ -18,7 +18,6 @@
 #
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'libraries'))
-# $LOAD_PATH.unshift(File.dirname(__FILE__))
 
 require 'chefspec'
 require 'chefspec/berkshelf'
