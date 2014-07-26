@@ -8,7 +8,7 @@ description <<-EOS
 Creates a swap file of the recommended size considering the system memory.
 EOS
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '0.1.1' # WiP
+version '0.1.1'
 
 supports 'amazon'
 supports 'arch'
