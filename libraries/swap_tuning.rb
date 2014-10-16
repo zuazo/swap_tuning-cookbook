@@ -46,7 +46,7 @@ class Chef
     def self.unknown_size_check(memory)
       Chef::Log.warn(
         "RAM size too high (#{memory2gbytes(memory).round} GB), "\
-        'I may not be able to choose the best swap size. Best size will be'\
+        'I may not be able to choose the best swap size. Best size will be '\
         'workload dependent.'
       ) if memory > 68_719_476_736 # 64 GB
     end
