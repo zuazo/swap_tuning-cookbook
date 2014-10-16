@@ -36,7 +36,7 @@ supports 'fedora'
 supports 'redhat'
 supports 'ubuntu'
 
-depends 'swap'
+depends 'swap', '~> 0.3'
 
 recipe 'swap_tuning::default', 'Creates the swap file.'
 
