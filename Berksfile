@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-site :opscode
+source 'https://supermarket.getchef.com'
 
 cookbook 'swap'
 cookbook 'swap_tuning', path: '.'
