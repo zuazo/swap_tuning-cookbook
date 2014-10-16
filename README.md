@@ -56,7 +56,7 @@ Attributes
 |---------------------------------------|:-------------:|--------------------------|
 | `node['swap_tuning']['size']`         | *calculated*  | Total swap size in MB.   |
 | `node['swap_tuning']['minimum_size']` | `nil`         | Swap minimum size in MB. |
-| `node['swap_tuning']['file_prefix']`  | `"/swapfile"` | Swap file name prefix.   |
+| `node['swap_tuning']['file_prefix']`  | `'/swapfile'` | Swap file name prefix.   |
 | `node['swap_tuning']['persist']`      | `true`        | Swap file persist.       |
 
 Recipes
@@ -75,14 +75,14 @@ You can simply include it in a recipe:
 
 ```ruby
 # in your recipe
-include_recipe "swap_tuning::default"
+include_recipe 'swap_tuning::default'
 ```
 
 Don't forget to include the `swap_tuning` cookbook as a dependency in the metadata:
 
 ```ruby
 # metadata.rb
-depends "swap_tuning"
+depends 'swap_tuning'
 ```
 
 ## Including in the Run List
