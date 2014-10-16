@@ -50,7 +50,7 @@ Or:
 
 ### Running Integration Tests in the Cloud
 
-#### Requirements:
+#### Requirements
 
 * `kitchen-vagrant`
 * `kitchen-digitalocean`

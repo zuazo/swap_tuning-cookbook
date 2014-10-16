@@ -43,7 +43,7 @@ In case you already have swap in the system, creates another swap file with the 
 Requirements
 ============
 
-## Platform:
+## Supported Platforms
 
 This cookbook has been tested on the following platforms:
 
@@ -57,13 +57,13 @@ This cookbook has been tested on the following platforms:
 
 Please, [let us know](https://github.com/onddo/swap_tuning-cookbook/issues/new?title=I%20have%20used%20it%20successfully%20on%20...) if you use it successfully on any other platform.
 
-## Cookbooks:
+## Required Cookbooks
 
 * [swap](https://supermarket.getchef.com/cookbooks/swap)
 
-## Applications:
+## Required Applications
 
-* Ruby 1.9.3 or higher.
+* Ruby `1.9.3` or higher.
 
 Attributes
 ==========
