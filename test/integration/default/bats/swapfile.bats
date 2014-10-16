@@ -1,5 +1,7 @@
 #!/usr/bin/env bats
 
+PATH='/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin'
+
 @test "should create swap file" {
   [ -f "/swapfile0" ]
 }
