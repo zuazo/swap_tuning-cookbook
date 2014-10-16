@@ -14,6 +14,9 @@ end
 
 metadata
 
+# Required for ChefSpec matchers
+cookbook 'swap', '>= 0.3.8'
+
 # Minitest Chef Handler
 # More info at https://github.com/calavera/minitest-chef-handler
 if ::File.directory?(::File.join('files', 'default', 'tests', 'minitest')) ||
