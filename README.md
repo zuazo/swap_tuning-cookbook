@@ -13,28 +13,12 @@ Swap size is chosen based on the following documentation:
 
 * [RedHat 7 Recommended Partitioning Scheme](https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/sect-disk-partitioning-setup-x86.html#sect-recommended-partitioning-scheme-x86)
 
-<table>
-  <tr>
-    <th>RAM Size</th>
-    <th>Recommended Swap</th>
-  </tr>
-  <tr>
-    <td>&le; 2 GB</td>
-    <td>2 &times; RAM</td>
-  </tr>
-  <tr>
-    <td>2 GB - 8 GB</td>
-    <td>= RAM</td>
-  </tr>
-  <tr>
-    <td>8 GB - 64 GB</td>
-    <td>&frac12; &times; RAM</td>
-  </tr>
-  <tr>
-    <td>&gt; 64 GB</td>
-    <td>workload dependent</td>
-  </tr>
-</table>
+| RAM Size     | Recommended Swap     |
+|--------------|----------------------|
+| &le; 2 GB    | 2 &times; RAM        |
+| 2 GB - 8 GB  | = RAM                |
+| 8 GB - 64 GB | &frac12; &times; RAM |
+| &gt; 64 GB   | workload dependent   |
 
 * [Ubuntu SwapFaq - How much swap do I need?](https://help.ubuntu.com/community/SwapFaq#How_much_swap_do_I_need.3F)
 
@@ -43,7 +27,7 @@ In case you already have swap in the system, creates another swap file with the 
 Requirements
 ============
 
-## Platform:
+## Supported Platforms
 
 This cookbook has been tested on the following platforms:
 
@@ -57,44 +41,23 @@ This cookbook has been tested on the following platforms:
 
 Please, [let us know](https://github.com/onddo/swap_tuning-cookbook/issues/new?title=I%20have%20used%20it%20successfully%20on%20...) if you use it successfully on any other platform.
 
-## Cookbooks:
+## Required Cookbooks
 
 * [swap](https://supermarket.getchef.com/cookbooks/swap)
 
-## Applications:
+## Required Applications
 
-* Ruby 1.9.3 or higher.
+* Ruby `1.9.3` or higher.
 
 Attributes
 ==========
 
-<table>
-  <tr>
-    <th>Attribute</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><code>node['swap_tuning']['size']</code></td>
-    <td>Total swap size in MB.</td>
-    <td><em>calculated</em></td>
-  </tr>
-  <tr>
-    <td><code>node['swap_tuning']['minimum_size']</code></td>
-    <td>Swap minimum size in MB.</td>
-    <td><code>nil</code></td>
-  </tr>
-  <tr>
-    <td><code>node['swap_tuning']['file_prefix']</code></td>
-    <td>Swap file name prefix.</td>
-    <td><code>"/swapfile"</code></td>
-  </tr>
-  <tr>
-    <td><code>node['swap_tuning']['persist']</code></td>
-    <td>Swap file persist.</td>
-    <td><code>true</code></td>
-  </tr>
-</table>
+| Attribute                             | Default       | Description              |
+|---------------------------------------|:-------------:|--------------------------|
+| `node['swap_tuning']['size']`         | *calculated*  | Total swap size in MB.   |
+| `node['swap_tuning']['minimum_size']` | `nil`         | Swap minimum size in MB. |
+| `node['swap_tuning']['file_prefix']`  | `'/swapfile'` | Swap file name prefix.   |
+| `node['swap_tuning']['persist']`      | `true`        | Swap file persist.       |
 
 Recipes
 =======
@@ -112,14 +75,14 @@ You can simply include it in a recipe:
 
 ```ruby
 # in your recipe
-include_recipe "swap_tuning::default"
+include_recipe 'swap_tuning::default'
 ```
 
 Don't forget to include the `swap_tuning` cookbook as a dependency in the metadata:
 
 ```ruby
 # metadata.rb
-depends "swap_tuning"
+depends 'swap_tuning'
 ```
 
 ## Including in the Run List

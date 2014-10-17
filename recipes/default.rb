@@ -2,8 +2,9 @@
 #
 # Cookbook Name:: swap_tuning
 # Recipe:: default
-#
-# Copyright 2014, Onddo Labs, SL.
+# Author:: Xabier de Zuazo (<xabier@onddo.com>)
+# Copyright:: Copyright (c) 2014 Onddo Labs, SL. (www.onddo.com)
+# License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,7 +25,8 @@ unless node['swap_tuning']['file_prefix'].nil?
 
   # Calculate swap size
   if node['swap_tuning']['size'].nil?
-    node.default['swap_tuning']['size'] = Chef::SwapTuning.recommended_size_mb(node['memory']['total'])
+    node.default['swap_tuning']['size'] =
+      Chef::SwapTuning.recommended_size_mb(node['memory']['total'])
     if !node['swap_tuning']['minimum_size'].nil? &&
        node['swap_tuning']['size'] < node['swap_tuning']['minimum_size']
       node.default['swap_tuning']['size'] = node['swap_tuning']['minimum_size']

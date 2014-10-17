@@ -1,7 +1,5 @@
 # encoding: UTF-8
 #
-# Cookbook Name:: swap_tuning
-# Attributes:: default
 # Author:: Xabier de Zuazo (<xabier@onddo.com>)
 # Copyright:: Copyright (c) 2014 Onddo Labs, SL. (www.onddo.com)
 # License:: Apache License, Version 2.0
@@ -19,7 +17,11 @@
 # limitations under the License.
 #
 
-default['swap_tuning']['size'] = nil
-default['swap_tuning']['minimum_size'] = nil
-default['swap_tuning']['file_prefix'] = '/swapfile'
-default['swap_tuning']['persist'] = true
+require 'spec_helper'
+
+describe file('/swapfile0') do
+  it { should be_file }
+  it { should be_mode 600 }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+end

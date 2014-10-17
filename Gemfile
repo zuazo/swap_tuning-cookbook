@@ -1,27 +1,42 @@
+# encoding: UTF-8
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
 source 'https://rubygems.org'
 
-group :test, :development do
+group :test do
   gem 'rake'
-  gem 'rspec', '~> 3.0'
+  gem 'berkshelf', '~> 3.1'
 end
 
-group :test do
-  gem 'berkshelf', '~> 2.0'
-  gem 'chefspec', '~> 4.0'
+group :style do
   gem 'foodcritic', '~> 4.0'
   gem 'rubocop', '~> 0.24'
 end
 
-group :integration, :kitchen do
-  gem 'vagrant', github: 'mitchellh/vagrant'
+group :unit do
+  gem 'chefspec', '~> 4.1'
+end
+
+group :integration do
+  gem 'vagrant-wrapper', '~> 1.2'
   gem 'test-kitchen', '~> 1.2'
   gem 'kitchen-vagrant', '~> 0.10'
 end
 
-group :integration_cloud, :kitchen_cloud do
+group :integration, :integration_cloud do
   gem 'kitchen-ec2', '~> 0.8'
-  gem 'kitchen-digitalocean', '~> 0.7'
+  gem 'kitchen-digitalocean', '~> 0.8'
+end
+
+group :guard do
+  gem 'guard', '~> 2.6'
+  gem 'guard-foodcritic', '~> 1.0'
+  gem 'guard-rubocop', '~> 1.1'
+  gem 'guard-rspec', '~> 4.3'
+  gem 'guard-kitchen', '~> 0.0'
+end
+
+group :charts do
+  gem 'gnuplot', '~> 2.6'
 end

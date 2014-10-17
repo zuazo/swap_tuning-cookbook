@@ -24,7 +24,7 @@ describe 'swap_tuning::default' do
 
   shared_examples_for 'a machine in need of swap' do |memory|
     let(:chef_run) do
-      ChefSpec::Runner.new do |node|
+      ChefSpec::SoloRunner.new do |node|
         node.set['memory']['total'] = memory[:memory]
         node.set['memory']['swap']['total'] = memory[:current_swap]
       end.converge(described_recipe)
