@@ -75,7 +75,7 @@ You can simply include it in a recipe:
 
 ```ruby
 # in your recipe
-include_recipe 'swap_tuning::default'
+include_recipe 'swap_tuning'
 ```
 
 Don't forget to include the `swap_tuning` cookbook as a dependency in the metadata:

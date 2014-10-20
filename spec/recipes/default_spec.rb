@@ -30,17 +30,27 @@ describe 'swap_tuning::default' do
       end.converge(described_recipe)
     end
 
-    it 'should reload ohai memory plugin' do
-      expect(chef_run).to reload_ohai('reload_memory').with(
-        plugin: 'memory'
-      ).at_compile_time
-    end
+    if memory[:new_swap] > 0
+      it 'should reload ohai memory plugin' do
+        expect(chef_run).to reload_ohai('reload_memory').with(
+          plugin: 'memory'
+        ).at_compile_time
+      end
 
-    it "should create a swap file of #{memory[:new_swap]} MB" do
-      expect(chef_run).to create_swap_file('/swapfile0').with(
-        size: memory[:new_swap]
-      )
-    end
+      it "should create a swap file of #{memory[:new_swap]} MB" do
+        expect(chef_run).to create_swap_file('/swapfile0').with(
+          size: memory[:new_swap]
+        )
+      end
+
+    else # memory[:new_swap] <= 0
+
+      it 'should not create a swap file' do
+        expect(chef_run).to_not create_swap_file('/swapfile0')
+      end
+
+    end # if memory[:new_swap] <= 0
+
   end # shared_examples_for a machine in need of swap
 
   describe 'with 1 GB memory and 0 GB swap' do
@@ -55,6 +65,20 @@ describe 'swap_tuning::default' do
                           memory: system_memory(3 * GB),
                           current_swap: system_swap(1 * GB),
                           new_swap: swap_file_size(2 * GB)
+  end
+
+  describe 'with 501832KB memory and 0KBI swap' do
+    it_should_behave_like 'a machine in need of swap',
+                          memory: '501832KB',
+                          current_swap: '0KBI',
+                          new_swap: swap_file_size(1_004_544 * KB)
+  end
+
+  describe 'with 501832KB memory and 10045400KBI swap' do
+    it_should_behave_like 'a machine in need of swap',
+                          memory: '501832KB',
+                          current_swap: '1004540KBI',
+                          new_swap: 0
   end
 
 end

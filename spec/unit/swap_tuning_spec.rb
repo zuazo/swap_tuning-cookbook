@@ -25,10 +25,11 @@ describe Chef::SwapTuning do
   describe '#memory2bytes' do
 
     {
-      '256' => 256,
-      '256KB' => 256 * KB,
-      '256MB' => 256 * MB,
-      '256GB' => 256 * GB
+      '256'       => 256,
+      '256KB'     => 256 * KB,
+      '256MB'     => 256 * MB,
+      '256GB'     => 256 * GB,
+      '501832KBI' => 501_832 * KB
     }.each do |memory, bytes|
 
       it "should convert #{memory} to #{bytes}" do
@@ -39,7 +40,7 @@ describe Chef::SwapTuning do
 
     it 'should not convert unknown memory values' do
       expect { described_class.memory2bytes('256BAD') }
-        .to raise_error(SystemExit)
+        .to raise_error(/^Unknown size: /)
     end
 
   end # describe #memory2bytes
@@ -47,14 +48,16 @@ describe Chef::SwapTuning do
   describe '#recommended_size_bytes' do
 
     {
-      '256MB'   => 512 * MB,
-      1.9 * GB  => 2 * 1.9 * GB,
-      2.1 * GB  => 2.1 * GB,
-      '4GB'     => 4 * GB,
-      7.9 * GB  => 7.9 * GB,
-      8.1 * GB  => 8.1 * GB / 2,
-      '10GB'    => 5 * GB,
-      '100GB'   => 50 * GB
+      '256MB'      => 512 * MB,
+      '512MB'      => 1024 * MB,
+      '501832KBI'  => 1_003_664 * KB,
+      1.9 * GB     => 2 * 1.9 * GB,
+      2.1 * GB     => 2.1 * GB,
+      '4GB'        => 4 * GB,
+      7.9 * GB     => 7.9 * GB,
+      8.1 * GB     => 8.1 * GB / 2,
+      '10GB'       => 5 * GB,
+      '100GB'      => 50 * GB
     }.each do |memory, swap|
       memory = memory.is_a?(Numeric) ? memory.round : memory
       swap = swap.floor
