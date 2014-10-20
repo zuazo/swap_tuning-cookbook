@@ -2,6 +2,12 @@ CHANGELOG for swap_tuning
 =========================
 This file is used to list changes made in each version of the `swap_tuning` cookbook.
 
+## v0.1.3 (2014-10-20)
+
+* Support for `/[0-9]+KBI/` memory format, fixes some Ubuntu `14.04` installations (fixes [issue #1](https://github.com/onddo/swap_tuning-cookbook/issues/1), thanks [@amirarabi](https://github.com/amirarabi) for the help).
+* kitchen.cloud.yml updated.
+* README: `include_recipe` example without recipe name.
+
 ## v0.1.2 (2014-10-17)
 
 * `Chef::SwapTuning`: add a missing space.
