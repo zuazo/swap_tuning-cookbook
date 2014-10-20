@@ -29,7 +29,7 @@ describe Chef::SwapTuning do
       '256KB'     => 256 * KB,
       '256MB'     => 256 * MB,
       '256GB'     => 256 * GB,
-      '501832KBI' => 501832 * KB
+      '501832KBI' => 501_832 * KB
     }.each do |memory, bytes|
 
       it "should convert #{memory} to #{bytes}" do
@@ -50,7 +50,7 @@ describe Chef::SwapTuning do
     {
       '256MB'      => 512 * MB,
       '512MB'      => 1024 * MB,
-      '501832KBI'  => 1003664 * KB,
+      '501832KBI'  => 1_003_664 * KB,
       1.9 * GB     => 2 * 1.9 * GB,
       2.1 * GB     => 2.1 * GB,
       '4GB'        => 4 * GB,

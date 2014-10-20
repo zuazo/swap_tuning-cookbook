@@ -45,7 +45,7 @@ describe 'swap_tuning::default' do
 
     else # memory[:new_swap] <= 0
 
-      it "should not create a swap file" do
+      it 'should not create a swap file' do
         expect(chef_run).to_not create_swap_file('/swapfile0')
       end
 
@@ -71,7 +71,7 @@ describe 'swap_tuning::default' do
     it_should_behave_like 'a machine in need of swap',
                           memory: '501832KB',
                           current_swap: '0KBI',
-                          new_swap: swap_file_size(1004544 * KB)
+                          new_swap: swap_file_size(1_004_544 * KB)
   end
 
   describe 'with 501832KB memory and 10045400KBI swap' do
