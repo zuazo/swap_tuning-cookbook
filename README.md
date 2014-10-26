@@ -3,7 +3,7 @@ Description
 [![Cookbook Version](https://img.shields.io/cookbook/v/swap_tuning.svg?style=flat)](https://supermarket.getchef.com/cookbooks/swap_tuning)
 [![Dependency Status](http://img.shields.io/gemnasium/onddo/swap_tuning-cookbook.svg?style=flat)](https://gemnasium.com/onddo/swap_tuning-cookbook)
 [![Code Climate](http://img.shields.io/codeclimate/github/onddo/swap_tuning-cookbook.svg?style=flat)](https://codeclimate.com/github/onddo/swap_tuning-cookbook)
-[![Build Status](http://img.shields.io/travis/onddo/swap_tuning-cookbook/0.1.3.svg?style=flat)](https://travis-ci.org/onddo/swap_tuning-cookbook)
+[![Build Status](http://img.shields.io/travis/onddo/swap_tuning-cookbook/0.1.4.svg?style=flat)](https://travis-ci.org/onddo/swap_tuning-cookbook)
 
 Chef cookbook to create a swap file of the recommended size considering the system memory.
 
