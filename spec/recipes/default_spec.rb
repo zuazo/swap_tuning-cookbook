@@ -31,13 +31,13 @@ describe 'swap_tuning::default' do
     end
 
     if memory[:new_swap] > 0
-      it 'should reload ohai memory plugin' do
+      it 'reloads ohai memory plugin' do
         expect(chef_run).to reload_ohai('reload_memory').with(
           plugin: 'memory'
         ).at_compile_time
       end
 
-      it "should create a swap file of #{memory[:new_swap]} MB" do
+      it "creates a swap file of #{memory[:new_swap]} MB" do
         expect(chef_run).to create_swap_file('/swapfile0').with(
           size: memory[:new_swap]
         )
@@ -45,7 +45,7 @@ describe 'swap_tuning::default' do
 
     else # memory[:new_swap] <= 0
 
-      it 'should not create a swap file' do
+      it 'does not create a swap file' do
         expect(chef_run).to_not create_swap_file('/swapfile0')
       end
 
