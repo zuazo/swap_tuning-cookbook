@@ -44,14 +44,21 @@ describe Chef::SwapTuning::RecipeHelpers do
   describe '#ohai_memory_plugin_resource_name' do
 
     context 'with ChefSpec' do
+      before { allow(subject).to receive(:chef_spec?).and_return(true) }
+
       it 'returns no random number' do
         expect(subject.ohai_memory_plugin_resource_name)
           .to eq('reload_memory')
       end
     end # context with ChefSpec
 
-    xcontext 'without ChefSpec' do
-      it 'returns a random number'
+    context 'without ChefSpec' do
+      before { allow(subject).to receive(:chef_spec?).and_return(false) }
+
+      it 'returns a random number' do
+        expect(subject.ohai_memory_plugin_resource_name)
+          .to match(/reload_memory \(Avoid CHEF-3694: [0-9.]+\)/)
+      end
     end # context without ChefSpec
 
   end # describe #ohai_memory_plugin_resource_name
