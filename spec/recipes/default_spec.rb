@@ -21,13 +21,14 @@ require 'spec_helper'
 require 'swap_tuning'
 
 describe 'swap_tuning::default' do
+  let(:chef_runner) { ChefSpec::SoloRunner.new }
+  let(:chef_run) { chef_runner.converge(described_recipe) }
+  let(:node) { chef_runner.node }
 
   shared_examples_for 'a machine in need of swap' do |memory|
-    let(:chef_run) do
-      ChefSpec::SoloRunner.new do |node|
-        node.set['memory']['total'] = memory[:memory]
-        node.set['memory']['swap']['total'] = memory[:current_swap]
-      end.converge(described_recipe)
+    before do
+      node.automatic['memory']['total'] = memory[:memory]
+      node.automatic['memory']['swap']['total'] = memory[:current_swap]
     end
 
     if memory[:new_swap] > 0
