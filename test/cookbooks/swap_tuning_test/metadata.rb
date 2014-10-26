@@ -1,5 +1,6 @@
 # encoding: UTF-8
 #
+# Cookbook Name:: swap_tuning_test
 # Author:: Xabier de Zuazo (<xabier@onddo.com>)
 # Copyright:: Copyright (c) 2014 Onddo Labs, SL. (www.onddo.com)
 # License:: Apache License, Version 2.0
@@ -17,21 +18,13 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
+name 'swap_tuning_test'
+maintainer 'Onddo Labs, SL.'
+maintainer_email 'team@onddo.com'
+license 'Apache 2.0'
+description 'This cookbook is used with test-kitchen to test the parent, '\
+            'swap_tuning cookbook'
+long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+version '0.1.0'
 
-mb = 1024**2
-
-describe file('/swapfile0') do
-  it { should be_file }
-  it { should be_mode 600 }
-  it { should be_owned_by 'root' }
-  it { should be_grouped_into 'root' }
-
-  # for 512MB size should be ~ 1024MB
-  its(:size) { should be > 900 * mb }
-  its(:size) { should be < 1025 * mb }
-end
-
-describe file('/swapfile1') do
-  it { should_not be_file }
-end
+depends 'swap_tuning'

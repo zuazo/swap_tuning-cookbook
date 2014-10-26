@@ -23,6 +23,11 @@ class Chef
   module SwapTuning
     # Some swap memory helpers to be included in Chef recipes
     module RecipeHelpers
+      def oldchef?
+        Gem::Requirement.new('< 11.12')
+          .satisfied_by?(Gem::Version.new(Chef::VERSION))
+      end
+
       def ohai_memory_plugin_resource_name
         if defined?(ChefSpec)
           'reload_memory'
