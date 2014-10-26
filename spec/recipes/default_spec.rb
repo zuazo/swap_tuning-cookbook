@@ -21,23 +21,24 @@ require 'spec_helper'
 require 'swap_tuning'
 
 describe 'swap_tuning::default' do
+  let(:chef_runner) { ChefSpec::SoloRunner.new }
+  let(:chef_run) { chef_runner.converge(described_recipe) }
+  let(:node) { chef_runner.node }
 
   shared_examples_for 'a machine in need of swap' do |memory|
-    let(:chef_run) do
-      ChefSpec::SoloRunner.new do |node|
-        node.set['memory']['total'] = memory[:memory]
-        node.set['memory']['swap']['total'] = memory[:current_swap]
-      end.converge(described_recipe)
+    before do
+      node.automatic['memory']['total'] = memory[:memory]
+      node.automatic['memory']['swap']['total'] = memory[:current_swap]
     end
 
     if memory[:new_swap] > 0
-      it 'should reload ohai memory plugin' do
+      it 'reloads ohai memory plugin' do
         expect(chef_run).to reload_ohai('reload_memory').with(
           plugin: 'memory'
         ).at_compile_time
       end
 
-      it "should create a swap file of #{memory[:new_swap]} MB" do
+      it "creates a swap file of #{memory[:new_swap]} MB" do
         expect(chef_run).to create_swap_file('/swapfile0').with(
           size: memory[:new_swap]
         )
@@ -45,7 +46,7 @@ describe 'swap_tuning::default' do
 
     else # memory[:new_swap] <= 0
 
-      it 'should not create a swap file' do
+      it 'does not create a swap file' do
         expect(chef_run).to_not create_swap_file('/swapfile0')
       end
 
@@ -65,20 +66,6 @@ describe 'swap_tuning::default' do
                           memory: system_memory(3 * GB),
                           current_swap: system_swap(1 * GB),
                           new_swap: swap_file_size(2 * GB)
-  end
-
-  describe 'with 501832KB memory and 0KBI swap' do
-    it_should_behave_like 'a machine in need of swap',
-                          memory: '501832KB',
-                          current_swap: '0KBI',
-                          new_swap: swap_file_size(1_004_544 * KB)
-  end
-
-  describe 'with 501832KB memory and 10045400KBI swap' do
-    it_should_behave_like 'a machine in need of swap',
-                          memory: '501832KB',
-                          current_swap: '1004540KBI',
-                          new_swap: 0
   end
 
 end

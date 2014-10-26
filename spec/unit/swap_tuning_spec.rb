@@ -25,20 +25,19 @@ describe Chef::SwapTuning do
   describe '#memory2bytes' do
 
     {
-      '256'       => 256,
-      '256KB'     => 256 * KB,
-      '256MB'     => 256 * MB,
-      '256GB'     => 256 * GB,
-      '501832KBI' => 501_832 * KB
+      '256'   => 256,
+      '256KB' => 256 * KB,
+      '256MB' => 256 * MB,
+      '256GB' => 256 * GB
     }.each do |memory, bytes|
 
-      it "should convert #{memory} to #{bytes}" do
+      it "converts #{memory} to #{bytes}" do
         expect(described_class.memory2bytes(memory)).to eq(bytes)
       end
 
     end
 
-    it 'should not convert unknown memory values' do
+    it 'does not convert unknown memory values' do
       expect { described_class.memory2bytes('256BAD') }
         .to raise_error(/^Unknown size: /)
     end
@@ -48,21 +47,20 @@ describe Chef::SwapTuning do
   describe '#recommended_size_bytes' do
 
     {
-      '256MB'      => 512 * MB,
-      '512MB'      => 1024 * MB,
-      '501832KBI'  => 1_003_664 * KB,
-      1.9 * GB     => 2 * 1.9 * GB,
-      2.1 * GB     => 2.1 * GB,
-      '4GB'        => 4 * GB,
-      7.9 * GB     => 7.9 * GB,
-      8.1 * GB     => 8.1 * GB / 2,
-      '10GB'       => 5 * GB,
-      '100GB'      => 50 * GB
+      '256MB'  => 512 * MB,
+      '512MB'  => 1024 * MB,
+      1.9 * GB => 2 * 1.9 * GB,
+      2.1 * GB => 2.1 * GB,
+      '4GB'    => 4 * GB,
+      7.9 * GB => 7.9 * GB,
+      8.1 * GB => 8.1 * GB / 2,
+      '10GB'   => 5 * GB,
+      '100GB'  => 50 * GB
     }.each do |memory, swap|
       memory = memory.is_a?(Numeric) ? memory.round : memory
       swap = swap.floor
 
-      it "should recommend #{swap} swap size with #{memory} memory" do
+      it "recommends #{swap} swap size with #{memory} memory" do
         allow(Chef::Log).to receive(:warn)
         swap_diff = described_class.recommended_size_bytes(memory) - swap
         expect(swap_diff.abs).to be < 5
@@ -70,14 +68,14 @@ describe Chef::SwapTuning do
 
       if described_class.memory2bytes(memory) <= 64 * GB
 
-        it "should warn if #{memory} RAM size is not too high" do
+        it "warns if #{memory} RAM size is not too high" do
           expect(Chef::Log).not_to receive(:warn)
           described_class.recommended_size_bytes(memory)
         end
 
       else
 
-        it "should not warn if #{memory} RAM size is too high" do
+        it "does not warn if #{memory} RAM size is too high" do
           expect(Chef::Log).to receive(:warn).once
           described_class.recommended_size_bytes(memory)
         end
@@ -90,7 +88,7 @@ describe Chef::SwapTuning do
 
   describe '#recommended_size_mb' do
 
-    it 'should return #recommended_size_bytes result in MB' do
+    it 'returns #recommended_size_bytes result in MB' do
       memory = 4 * GB
       expect(described_class).to receive(:recommended_size_bytes).once
         .with(memory).and_return(memory)

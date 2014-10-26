@@ -26,10 +26,10 @@ class Chef
   module SwapTuning
     def self.memory2bytes(memory)
       case memory.to_s
-      when /^([0-9]+)GBI?$/i then Regexp.last_match[1].to_i * 1_073_741_824
-      when /^([0-9]+)MBI?$/i then Regexp.last_match[1].to_i * 1_048_576
-      when /^([0-9]+)KBI?$/i then Regexp.last_match[1].to_i * 1024
-      when /^([0-9]+)(B|BI)?$/i then Regexp.last_match[1].to_i
+      when /^([0-9]+)GB$/i then Regexp.last_match[1].to_i * 1_073_741_824
+      when /^([0-9]+)MB$/i then Regexp.last_match[1].to_i * 1_048_576
+      when /^([0-9]+)KB$/i then Regexp.last_match[1].to_i * 1024
+      when /^([0-9]+)B?$/i then Regexp.last_match[1].to_i
       when nil then 0
       else fail "Unknown size: #{memory}"
       end

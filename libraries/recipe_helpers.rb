@@ -23,8 +23,27 @@ class Chef
   module SwapTuning
     # Some swap memory helpers to be included in Chef recipes
     module RecipeHelpers
+      def chef_spec?
+        defined?(ChefSpec)
+      end
+
+      def oldchef?
+        Gem::Requirement.new('< 11.12')
+          .satisfied_by?(Gem::Version.new(Chef::VERSION))
+      end
+
+      def ohai_memory_plugin_resource_name
+        if chef_spec?
+          'reload_memory'
+        else
+          # Avoid "cloning resource attributes from prior resource" warning
+          rand = Random.rand
+          "reload_memory (Avoid CHEF-3694: #{rand})"
+        end
+      end
+
       def ohai_memory_reload
-        ohai 'reload_memory' do
+        ohai ohai_memory_plugin_resource_name do
           plugin 'memory'
         end.run_action(:reload)
       end

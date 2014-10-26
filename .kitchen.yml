@@ -2,7 +2,7 @@
 driver:
   name: vagrant
   customize:
-    memory: 1024
+    memory: 512
 
 provisioner:
   name: chef_solo
@@ -22,4 +22,14 @@ platforms:
 suites:
 - name: default
   run_list:
-  - recipe[swap_tuning::default]
+  - recipe[swap_tuning_test::default]
+- name: oldchef
+  provisioner:
+    require_chef_omnibus: 11.10.4
+  run_list:
+  - recipe[swap_tuning_test::default]
+- name: newchef
+  provisioner:
+    require_chef_omnibus: 11.12.0
+  run_list:
+  - recipe[swap_tuning_test::default]

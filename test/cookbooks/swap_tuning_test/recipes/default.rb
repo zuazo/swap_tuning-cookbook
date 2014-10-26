@@ -1,5 +1,7 @@
 # encoding: UTF-8
 #
+# Cookbook Name:: swap_tuning_test
+# Recipe:: default
 # Author:: Xabier de Zuazo (<xabier@onddo.com>)
 # Copyright:: Copyright (c) 2014 Onddo Labs, SL. (www.onddo.com)
 # License:: Apache License, Version 2.0
@@ -17,21 +19,18 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
+self.class.send(:include, Chef::SwapTuning::RecipeHelpers)
 
-mb = 1024**2
+# Disable swap included in the testing box images
+bash 'swapoff -a' do
+  code <<-EOH
+    cat /proc/swaps | sed '1d' | awk '{print $1}' \
+      | grep -v '^#{Regexp.escape(node['swap_tuning']['file_prefix'])}' \
+      | xargs -r swapoff
+  EOH
+  action :nothing
+end.run_action(:run)
 
-describe file('/swapfile0') do
-  it { should be_file }
-  it { should be_mode 600 }
-  it { should be_owned_by 'root' }
-  it { should be_grouped_into 'root' }
+node.automatic['memory']['swap']['total'] = '0kB' if oldchef?
 
-  # for 512MB size should be ~ 1024MB
-  its(:size) { should be > 900 * mb }
-  its(:size) { should be < 1025 * mb }
-end
-
-describe file('/swapfile1') do
-  it { should_not be_file }
-end
+include_recipe 'swap_tuning'

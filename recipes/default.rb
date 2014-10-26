@@ -42,14 +42,10 @@ unless node['swap_tuning']['file_prefix'].nil?
     swap_file "#{node['swap_tuning']['file_prefix']}#{i}" do
       size remaining_size # MBs
       persist node['swap_tuning']['persist']
-      not_if do
-        # not required
-        ::File.exist?("#{node['swap_tuning']['file_prefix']}#{i}")
-      end
     end.run_action(:create)
 
     i += 1
-    current_size = swap_size_mb
+    current_size = oldchef? ? current_size + remaining_size : swap_size_mb
   end
 
 end
