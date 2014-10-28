@@ -24,6 +24,20 @@ describe 'swap_tuning::default' do
   let(:chef_runner) { ChefSpec::SoloRunner.new }
   let(:chef_run) { chef_runner.converge(described_recipe) }
   let(:node) { chef_runner.node }
+  before do
+    node.automatic['memory']['total'] = '524288kB'
+    node.automatic['memory']['swap']['total'] = '0kB'
+  end
+
+  (0..9).step.each do |i|
+    it "creates swapfile#{i}" do
+      expect(chef_run).to create_swap_file("/swapfile#{i}")
+    end
+  end
+
+  it 'does not create swapfile10' do
+    expect(chef_run).to_not create_swap_file('/swapfile10')
+  end
 
   shared_examples_for 'a machine in need of swap' do |memory|
     before do
