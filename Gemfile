@@ -37,7 +37,3 @@ group :guard do
   gem 'guard-rspec', '~> 4.3'
   gem 'guard-kitchen', '~> 0.0'
 end
-
-group :charts do
-  gem 'gnuplot', '~> 2.6'
-end
