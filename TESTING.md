@@ -7,6 +7,7 @@ Testing
 * `foodcritic`
 * `rubocop`
 * `berkshelf`
+* `simplecov`
 * `should_not`
 * `chefspec`
 * `test-kitchen`
@@ -29,7 +30,7 @@ You must have [VirtualBox](https://www.virtualbox.org/) and [Vagrant](http://www
 You can install gem dependencies with bundler:
 
     $ gem install bundler
-    $ bundle install
+    $ bundle install --without travis
 
 ## Running the Syntax Style Tests
 

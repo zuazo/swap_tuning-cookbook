@@ -23,6 +23,7 @@ require 'chefspec'
 require 'chefspec/berkshelf'
 require 'should_not/rspec'
 
+require 'support/coverage'
 require 'support/memory_helpers'
 
 RSpec.configure do |config|
@@ -46,4 +47,4 @@ RSpec.configure do |config|
   config.extend MemoryHelpers
 end
 
-# at_exit { ChefSpec::Coverage.report! } # still in beta
+at_exit { ChefSpec::Coverage.report! }
