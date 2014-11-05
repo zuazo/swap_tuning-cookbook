@@ -24,6 +24,12 @@ require 'recipe_helpers'
 describe Chef::SwapTuning::RecipeHelpers, order: :random do
   subject { FakeRecipe.new }
 
+  describe '#chef_spec?' do
+    it 'returns true' do
+      expect(subject.chef_spec?).to eq(true)
+    end
+  end
+
   describe '#oldchef?' do
 
     {
@@ -84,5 +90,29 @@ describe Chef::SwapTuning::RecipeHelpers, order: :random do
       expect(subject.swap_size_mb).to eq(5)
     end
   end # describe #swap_size_mb
+
+  describe '#ohai_memory_reload' do
+    let(:ohai) { 'Chef::Resource::Ohai' }
+    before do
+      allow(subject).to receive(:ohai) do |&block|
+        ohai.instance_eval(&block)
+      end.and_return(ohai)
+      allow(ohai).to receive(:plugin)
+      allow(ohai).to receive(:run_action)
+    end
+    after { subject.ohai_memory_reload }
+
+    it 'creates the ohai resource' do
+      expect(subject).to receive(:ohai).once
+    end
+
+    it 'sets ohai resource memory plugin' do
+      expect(ohai).to receive(:plugin).with('memory').once
+    end
+
+    it 'runs ohai resource :reload action' do
+      expect(ohai).to receive(:run_action).with(:reload).once
+    end
+  end
 
 end

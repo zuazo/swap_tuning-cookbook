@@ -36,7 +36,6 @@ class Chef
       when /^([0-9]+)([GMK]?B)$/i
         Regexp.last_match[1].to_i * SIZE_UNITS[Regexp.last_match[2].upcase]
       when /^([0-9]+)$/i then Regexp.last_match[1].to_i
-      when nil then 0
       else fail "Unknown size: #{memory}"
       end
     end

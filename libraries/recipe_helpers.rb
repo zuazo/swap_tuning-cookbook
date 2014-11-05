@@ -24,7 +24,7 @@ class Chef
     # Some swap memory helpers to be included in Chef recipes
     module RecipeHelpers
       def chef_spec?
-        defined?(ChefSpec)
+        !defined?(ChefSpec).nil?
       end
 
       def oldchef?

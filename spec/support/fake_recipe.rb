@@ -37,19 +37,11 @@ class FakeRecipe < ::Chef::Node
     swap(1 * GB)
   end
 
-  def memory(value = nil)
-    if value.nil?
-      node['memory']['total']
-    else
-      node.automatic['memory']['swap']['total'] = system_memory(value)
-    end
+  def memory(value)
+    node.automatic['memory']['swap']['total'] = system_memory(value)
   end
 
-  def swap(value = nil)
-    if value.nil?
-      node['memory']['total']
-    else
-      node.automatic['memory']['swap']['total'] = system_swap(value)
-    end
+  def swap(value)
+    node.automatic['memory']['swap']['total'] = system_swap(value)
   end
 end
