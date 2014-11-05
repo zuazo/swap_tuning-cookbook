@@ -21,7 +21,7 @@ require 'spec_helper'
 require 'support/fake_recipe'
 require 'recipe_helpers'
 
-describe Chef::SwapTuning::RecipeHelpers do
+describe Chef::SwapTuning::RecipeHelpers, order: :random do
   subject { FakeRecipe.new }
 
   describe '#oldchef?' do

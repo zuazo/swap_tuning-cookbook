@@ -20,7 +20,7 @@
 require 'spec_helper'
 require 'swap_tuning'
 
-describe Chef::SwapTuning do
+describe Chef::SwapTuning, order: :random do
 
   describe '#memory2bytes' do
 
