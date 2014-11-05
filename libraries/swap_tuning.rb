@@ -24,23 +24,29 @@ require 'chef/application'
 class Chef
   # Methods to recommend swap sizes depending on memory values
   module SwapTuning
+    SIZE_UNITS = {
+      'GB' => 1_073_741_824,
+      'MB' => 1_048_576,
+      'KB' => 1024,
+      'B'  => 1
+    } unless defined?(::Chef::SwapTuning::SIZE_UNITS)
+
     def self.memory2bytes(memory)
       case memory.to_s
-      when /^([0-9]+)GB$/i then Regexp.last_match[1].to_i * 1_073_741_824
-      when /^([0-9]+)MB$/i then Regexp.last_match[1].to_i * 1_048_576
-      when /^([0-9]+)KB$/i then Regexp.last_match[1].to_i * 1024
-      when /^([0-9]+)B?$/i then Regexp.last_match[1].to_i
+      when /^([0-9]+)([GMK]?B)$/i
+        Regexp.last_match[1].to_i * SIZE_UNITS[Regexp.last_match[2].upcase]
+      when /^([0-9]+)$/i then Regexp.last_match[1].to_i
       when nil then 0
       else fail "Unknown size: #{memory}"
       end
     end
 
     def self.memory2mbytes(memory)
-      memory2bytes(memory).to_f / 1_048_576
+      memory2bytes(memory).to_f / SIZE_UNITS['MB']
     end
 
     def self.memory2gbytes(memory)
-      memory2mbytes(memory) / 1024
+      memory2mbytes(memory) / SIZE_UNITS['KB']
     end
 
     def self.unknown_size_check(memory)
