@@ -2,10 +2,15 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-source 'https://supermarket.getchef.com'
-my_cookbook = ::File.basename(Dir.pwd).sub(/[-_]?cookbook$/, '')
+source 'https://supermarket.chef.io'
+my_cookbook = 'swap_tuning'
 
-# Helper to include a local cookbook from disk
+# Berkshelf helper to include a local cookbook from disk.
+#
+# @param name [String] cookbook name.
+# @param version [String] cookbook version requirement.
+# @param options [Hash] #cookbook method options.
+# return void
 def local_cookbook(name, version = '>= 0.0.0', options = {})
   cookbook(name, version, {
     path: "../../cookbooks/#{name}"
@@ -13,17 +18,18 @@ def local_cookbook(name, version = '>= 0.0.0', options = {})
 end
 
 metadata
-
-# Required for ChefSpec matchers
-cookbook 'swap', '>= 0.3.8'
+cookbook 'apt'
+cookbook 'freebsd'
 
 # Minitest Chef Handler
 # More info at https://github.com/calavera/minitest-chef-handler
 if ::File.directory?(::File.join('files', 'default', 'tests', 'minitest')) ||
-   ::File.directory?(::File.join(
-     'test', 'cookbooks', "#{my_cookbook}_test", 'files', 'default', 'tests',
-     'minitest'
-   ))
+   ::File.directory?(
+     ::File.join(
+       'test', 'cookbooks', "#{my_cookbook}_test", 'files', 'default', 'tests',
+       'minitest'
+     )
+   )
   cookbook 'minitest-handler'
 end
 

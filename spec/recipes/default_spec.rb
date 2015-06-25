@@ -65,7 +65,6 @@ describe 'swap_tuning::default', order: :random do
       end
 
     end # if memory[:new_swap] <= 0
-
   end # shared_examples_for a machine in need of swap
 
   describe 'with 1 GB memory and 0 GB swap' do
@@ -81,5 +80,4 @@ describe 'swap_tuning::default', order: :random do
                           current_swap: system_swap(1 * GB),
                           new_swap: swap_file_size(2 * GB)
   end
-
 end

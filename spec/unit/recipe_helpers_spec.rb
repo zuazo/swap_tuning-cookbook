@@ -31,7 +31,6 @@ describe Chef::SwapTuning::RecipeHelpers, order: :random do
   end
 
   describe '#oldchef?' do
-
     {
       '11.10.4' => true,
       '11.12.0' => false
@@ -44,11 +43,9 @@ describe Chef::SwapTuning::RecipeHelpers, order: :random do
         end
       end # context with Chef version version
     end # each version, old
-
   end # describe oldchef?
 
   describe '#ohai_memory_plugin_resource_name' do
-
     context 'with ChefSpec' do
       before { allow(subject).to receive(:chef_spec?).and_return(true) }
 
@@ -66,7 +63,6 @@ describe Chef::SwapTuning::RecipeHelpers, order: :random do
           .to match(/reload_memory \(Avoid CHEF-3694: [0-9.]+\)/)
       end
     end # context without ChefSpec
-
   end # describe #ohai_memory_plugin_resource_name
 
   describe '#swap_size_mb' do
@@ -114,5 +110,4 @@ describe Chef::SwapTuning::RecipeHelpers, order: :random do
       expect(ohai).to receive(:run_action).with(:reload).once
     end
   end
-
 end

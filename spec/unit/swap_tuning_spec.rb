@@ -21,31 +21,25 @@ require 'spec_helper'
 require 'swap_tuning'
 
 describe Chef::SwapTuning, order: :random do
-
   describe '#memory2bytes' do
-
     {
       '256'   => 256,
       '256KB' => 256 * KB,
       '256MB' => 256 * MB,
       '256GB' => 256 * GB
     }.each do |memory, bytes|
-
       it "converts #{memory} to #{bytes}" do
         expect(described_class.memory2bytes(memory)).to eq(bytes)
       end
-
     end
 
     it 'does not convert unknown memory values' do
       expect { described_class.memory2bytes('256BAD') }
         .to raise_error(/^Unknown size: /)
     end
-
   end # describe #memory2bytes
 
   describe '#recommended_size_bytes' do
-
     {
       '256MB'  => 512 * MB,
       '512MB'  => 1024 * MB,
@@ -81,13 +75,10 @@ describe Chef::SwapTuning, order: :random do
         end
 
       end
-
     end # each do memory, swap
-
   end # describe recommended_size_bytes
 
   describe '#recommended_size_mb' do
-
     it 'returns #recommended_size_bytes result in MB' do
       memory = 4 * GB
       expect(described_class).to receive(:recommended_size_bytes).once
@@ -95,7 +86,5 @@ describe Chef::SwapTuning, order: :random do
       expect(described_class.recommended_size_mb(memory))
         .to eql(memory / (1024 * 1024).ceil)
     end
-
   end # describe #recommended_size_mb
-
 end
