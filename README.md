@@ -95,9 +95,9 @@ Another alternative is to include it in your Run List:
 ```json
 {
   "name": "app001.example.com",
-  [...]
+  "[...]": "[...]",
   "run_list": [
-    [...]
+    "[...]",
     "recipe[swap_tuning]"
   ]
 }
