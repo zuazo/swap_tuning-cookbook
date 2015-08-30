@@ -4,17 +4,17 @@ This file is used to list changes made in each version of the `swap_tuning` cook
 
 ## v0.1.4 (2014-10-26)
 
-* Fix Chef `< 11.12` support (fixes [issue #1](https://github.com/onddo/swap_tuning-cookbook/issues/1), thanks [@amirarabi](https://github.com/amirarabi) for the help).
+* Fix Chef `< 11.12` support (fixes [issue #1](https://github.com/zuazo/swap_tuning-cookbook/issues/1), thanks [@amirarabi](https://github.com/amirarabi) for the help).
 * Fix *"cloning resource attributes from prior resource"* warning.
 * Add more integrations tests and a `swap_tuning_test` cookbook.
-* Revert `/[0-9]+KBI/` memory format support, bad fix (partial revert of [b55c9ab](https://github.com/onddo/swap_tuning-cookbook/commit/b55c9ab11f0a11edfeece602ff5e71d99b2e9264) in [2e198af](https://github.com/onddo/swap_tuning-cookbook/commit/2e198af7bc2724fbe907c6602d6d8028a5ca2366)).
+* Revert `/[0-9]+KBI/` memory format support, bad fix (partial revert of [b55c9ab](https://github.com/zuazo/swap_tuning-cookbook/commit/b55c9ab11f0a11edfeece602ff5e71d99b2e9264) in [2e198af](https://github.com/zuazo/swap_tuning-cookbook/commit/2e198af7bc2724fbe907c6602d6d8028a5ca2366)).
 * Integrate tests with `should_not` gem.
 * *spec/recipes/default_spec.rb* `chef_run` code simplified.
 * Add complete unit tests for `SwapTuning::RecipeHelpers` library.
 
 ## v0.1.3 (2014-10-20)
 
-* Support for `/[0-9]+KBI/` memory format, fixes some Ubuntu `14.04` installations (fixes [issue #1](https://github.com/onddo/swap_tuning-cookbook/issues/1), thanks [@amirarabi](https://github.com/amirarabi) for the help).
+* Support for `/[0-9]+KBI/` memory format, fixes some Ubuntu `14.04` installations (fixes [issue #1](https://github.com/zuazo/swap_tuning-cookbook/issues/1), thanks [@amirarabi](https://github.com/amirarabi) for the help).
 * kitchen.cloud.yml updated.
 * README: `include_recipe` example without recipe name.
 

@@ -1,10 +1,10 @@
 Description
 ===========
 [![Cookbook Version](https://img.shields.io/cookbook/v/swap_tuning.svg?style=flat)](https://supermarket.chef.io/cookbooks/swap_tuning)
-[![Dependency Status](http://img.shields.io/gemnasium/onddo/swap_tuning-cookbook.svg?style=flat)](https://gemnasium.com/onddo/swap_tuning-cookbook)
-[![Code Climate](http://img.shields.io/codeclimate/github/onddo/swap_tuning-cookbook.svg?style=flat)](https://codeclimate.com/github/onddo/swap_tuning-cookbook)
-[![Build Status](http://img.shields.io/travis/onddo/swap_tuning-cookbook.svg?style=flat)](https://travis-ci.org/onddo/swap_tuning-cookbook)
-[![Coverage Status](http://img.shields.io/coveralls/onddo/swap_tuning-cookbook.svg?style=flat)](https://coveralls.io/r/onddo/swap_tuning-cookbook?branch=master)
+[![Dependency Status](http://img.shields.io/gemnasium/zuazo/swap_tuning-cookbook.svg?style=flat)](https://gemnasium.com/zuazo/swap_tuning-cookbook)
+[![Code Climate](http://img.shields.io/codeclimate/github/zuazo/swap_tuning-cookbook.svg?style=flat)](https://codeclimate.com/github/zuazo/swap_tuning-cookbook)
+[![Build Status](http://img.shields.io/travis/zuazo/swap_tuning-cookbook.svg?style=flat)](https://travis-ci.org/zuazo/swap_tuning-cookbook)
+[![Coverage Status](http://img.shields.io/coveralls/zuazo/swap_tuning-cookbook.svg?style=flat)](https://coveralls.io/r/zuazo/swap_tuning-cookbook?branch=master)
 
 Chef cookbook to create a swap file of the recommended size considering the system memory.
 
@@ -40,7 +40,7 @@ This cookbook has been tested on the following platforms:
 * RedHat
 * Ubuntu
 
-Please, [let us know](https://github.com/onddo/swap_tuning-cookbook/issues/new?title=I%20have%20used%20it%20successfully%20on%20...) if you use it successfully on any other platform.
+Please, [let us know](https://github.com/zuazo/swap_tuning-cookbook/issues/new?title=I%20have%20used%20it%20successfully%20on%20...) if you use it successfully on any other platform.
 
 ## Required Cookbooks
 
@@ -92,7 +92,7 @@ Another alternative is to include it in your Run List:
 
 ```json
 {
-  "name": "app001.onddo.com",
+  "name": "app001.example.com",
   [...]
   "run_list": [
     [...]
@@ -104,27 +104,28 @@ Another alternative is to include it in your Run List:
 Testing
 =======
 
-See [TESTING.md](https://github.com/onddo/swap_tuning-cookbook/blob/master/TESTING.md).
+See [TESTING.md](https://github.com/zuazo/swap_tuning-cookbook/blob/master/TESTING.md).
 
 Contributing
 ============
 
-Please do not hesitate to [open an issue](https://github.com/onddo/swap_tuning-cookbook/issues/new) with any questions or problems.
+Please do not hesitate to [open an issue](https://github.com/zuazo/swap_tuning-cookbook/issues/new) with any questions or problems.
 
-See [CONTRIBUTING.md](https://github.com/onddo/swap_tuning-cookbook/blob/master/CONTRIBUTING.md).
+See [CONTRIBUTING.md](https://github.com/zuazo/swap_tuning-cookbook/blob/master/CONTRIBUTING.md).
 
 TODO
 ====
 
-See [TODO.md](https://github.com/onddo/swap_tuning-cookbook/blob/master/TODO.md).
+See [TODO.md](https://github.com/zuazo/swap_tuning-cookbook/blob/master/TODO.md).
 
 License and Author
 ==================
 
 |                      |                                          |
 |:---------------------|:-----------------------------------------|
-| **Author:**          | [Xabier de Zuazo](https://github.com/zuazo) (<xabier@onddo.com>)
-| **Copyright:**       | Copyright (c) 2014, Onddo Labs, SL. (www.onddo.com)
+| **Author:**          | [Xabier de Zuazo](https://github.com/zuazo) (<xabier@zuazo.org>)
+| **Copyright:**       | Copyright (c) 2015, Xabier de Zuazo
+| **Copyright:**       | Copyright (c) 2014, Onddo Labs, SL.
 | **License:**         | Apache License, Version 2.0
 
     Licensed under the Apache License, Version 2.0 (the "License");
