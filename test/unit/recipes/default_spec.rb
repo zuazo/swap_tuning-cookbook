@@ -80,4 +80,18 @@ describe 'swap_tuning::default', order: :random do
                           current_swap: system_swap(1 * GB),
                           new_swap: swap_file_size(2 * GB)
   end
+
+  describe 'with 3 GB memory and 3 GB swap' do
+    it_should_behave_like 'a machine in need of swap',
+                          memory: system_memory(3 * GB),
+                          current_swap: system_swap(3 * GB),
+                          new_swap: 0
+  end
+
+  describe 'with 3 GB memory and 4 GB swap' do
+    it_should_behave_like 'a machine in need of swap',
+                          memory: system_memory(3 * GB),
+                          current_swap: system_swap(4 * GB),
+                          new_swap: 0
+  end
 end
