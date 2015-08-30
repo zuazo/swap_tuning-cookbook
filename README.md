@@ -1,6 +1,6 @@
 Description
 ===========
-[![Cookbook Version](https://img.shields.io/cookbook/v/swap_tuning.svg?style=flat)](https://supermarket.getchef.com/cookbooks/swap_tuning)
+[![Cookbook Version](https://img.shields.io/cookbook/v/swap_tuning.svg?style=flat)](https://supermarket.chef.io/cookbooks/swap_tuning)
 [![Dependency Status](http://img.shields.io/gemnasium/onddo/swap_tuning-cookbook.svg?style=flat)](https://gemnasium.com/onddo/swap_tuning-cookbook)
 [![Code Climate](http://img.shields.io/codeclimate/github/onddo/swap_tuning-cookbook.svg?style=flat)](https://codeclimate.com/github/onddo/swap_tuning-cookbook)
 [![Build Status](http://img.shields.io/travis/onddo/swap_tuning-cookbook.svg?style=flat)](https://travis-ci.org/onddo/swap_tuning-cookbook)
@@ -44,7 +44,7 @@ Please, [let us know](https://github.com/onddo/swap_tuning-cookbook/issues/new?t
 
 ## Required Cookbooks
 
-* [swap](https://supermarket.getchef.com/cookbooks/swap)
+* [swap](https://supermarket.chef.io/cookbooks/swap)
 
 ## Required Applications
 
