@@ -3,8 +3,8 @@ Swap Tuning Cookbook
 [![Cookbook Version](https://img.shields.io/cookbook/v/swap_tuning.svg?style=flat)](https://supermarket.chef.io/cookbooks/swap_tuning)
 [![Dependency Status](http://img.shields.io/gemnasium/zuazo/swap_tuning-cookbook.svg?style=flat)](https://gemnasium.com/zuazo/swap_tuning-cookbook)
 [![Code Climate](http://img.shields.io/codeclimate/github/zuazo/swap_tuning-cookbook.svg?style=flat)](https://codeclimate.com/github/zuazo/swap_tuning-cookbook)
-[![Build Status](http://img.shields.io/travis/zuazo/swap_tuning-cookbook.svg?style=flat)](https://travis-ci.org/zuazo/swap_tuning-cookbook)
-[![Coverage Status](http://img.shields.io/coveralls/zuazo/swap_tuning-cookbook.svg?style=flat)](https://coveralls.io/r/zuazo/swap_tuning-cookbook?branch=master)
+[![Build Status](http://img.shields.io/travis/zuazo/swap_tuning-cookbook/0.2.0.svg?style=flat)](https://travis-ci.org/zuazo/swap_tuning-cookbook)
+[![Coverage Status](http://img.shields.io/coveralls/zuazo/swap_tuning-cookbook/0.2.0.svg?style=flat)](https://coveralls.io/r/zuazo/swap_tuning-cookbook?branch=0.2.0)
 
 [Chef](https://www.chef.io/) cookbook to create a swap file of the recommended size considering the system memory.
 

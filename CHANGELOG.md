@@ -2,6 +2,34 @@ CHANGELOG for swap_tuning
 =========================
 This file is used to list changes made in each version of the `swap_tuning` cookbook.
 
+## v0.2.0 (2015-08-30)
+
+* Fix new RuboCop offense: `SwapTuning#memory2bytes` refactorized.
+* Update chef links to use *chef.io* domain.
+* Update contact information and links after migration.
+* metadata: Add `source_url` and `issues_url`.
+* Add SUSE support.
+
+* Documentation:
+ * README:
+  * Improve title.
+  * Improve JSON examples.
+
+* Testing:
+ * Travis CI: Add Ruby `2.2`.
+ * Test coverage to 100%.
+ * Configure test coverage and *coveralls.io*.
+ * Add ChefSpec tests for *swapfiles0-9* files creation.
+ * Move ChefSpec tests to *test/unit*.
+ * Update .kitchen.yml file.
+ * Rakefile: Add clean task.
+ * Gemfile updates:
+  * Remove `gnuplot` dependency.
+  * Update RuboCop to `0.33.0`.
+  * Disable guard-kitchen.
+  * Use fixed versions for some gems.
+  * Build against Chef `11` & `12`.
+
 ## v0.1.4 (2014-10-26)
 
 * Fix Chef `< 11.12` support (fixes [issue #1](https://github.com/zuazo/swap_tuning-cookbook/issues/1), thanks [@amirarabi](https://github.com/amirarabi) for the help).
