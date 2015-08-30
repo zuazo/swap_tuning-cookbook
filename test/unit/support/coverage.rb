@@ -1,7 +1,7 @@
 # encoding: UTF-8
 #
 # Author:: Xabier de Zuazo (<xabier@zuazo.org>)
-# Copyright:: Copyright (c) 2014 Onddo Labs, SL.
+# Copyright:: Copyright (c) 2015 Xabier de Zuazo
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,31 +17,19 @@
 # limitations under the License.
 #
 
-require 'chef/node'
-require 'recipe_helpers'
-require 'support/memory_helpers'
-
-# Class to emulate the current recipe with some helpers
-class FakeRecipe < ::Chef::Node
-  include ::Chef::SwapTuning::RecipeHelpers
-  include ::MemoryHelpers
-
-  def initialize
-    super
-    name('node001')
-    node = self
-    Dir.glob("#{::File.dirname(__FILE__)}/../../attributes/*.rb") do |f|
-      node.from_file(f)
+if ENV['TRAVIS']
+  require 'coveralls'
+  Coveralls.wear!
+else
+  require 'simplecov'
+  SimpleCov.start do
+    add_group 'Libraries', '/libraries'
+    add_group 'ChefSpec' do |src|
+      %r{/test/unit/(recipes|resources|providers|templates)}.match(src.filename)
     end
-    memory(2 * GB)
-    swap(1 * GB)
-  end
-
-  def memory(value)
-    node.automatic['memory']['swap']['total'] = system_memory(value)
-  end
-
-  def swap(value)
-    node.automatic['memory']['swap']['total'] = system_swap(value)
+    add_group 'RSpec' do |src|
+      %r{/test/unit/(unit|functional|integration|libraries)}.match(src.filename)
+    end
+    add_group 'RSpec Support', '/test/unit/support'
   end
 end

@@ -17,19 +17,31 @@
 # limitations under the License.
 #
 
-if ENV['TRAVIS']
-  require 'coveralls'
-  Coveralls.wear!
-else
-  require 'simplecov'
-  SimpleCov.start do
-    add_group 'Libraries', '/libraries'
-    add_group 'ChefSpec' do |src|
-      %r{/spec/(recipes|resources|providers)}.match(src.filename)
+require 'chef/node'
+require 'recipe_helpers'
+require_relative 'memory_helpers'
+
+# Class to emulate the current recipe with some helpers
+class FakeRecipe < ::Chef::Node
+  include ::Chef::SwapTuning::RecipeHelpers
+  include ::MemoryHelpers
+
+  def initialize
+    super
+    name('node001')
+    node = self
+    Dir.glob("#{::File.dirname(__FILE__)}/../../../attributes/*.rb") do |f|
+      node.from_file(f)
     end
-    add_group 'RSpec' do |src|
-      %r{/spec/(unit|functional|integration|libraries)}.match(src.filename)
-    end
-    add_group 'RSpec Support', '/spec/support'
+    memory(2 * GB)
+    swap(1 * GB)
+  end
+
+  def memory(value)
+    node.automatic['memory']['swap']['total'] = system_memory(value)
+  end
+
+  def swap(value)
+    node.automatic['memory']['swap']['total'] = system_swap(value)
   end
 end

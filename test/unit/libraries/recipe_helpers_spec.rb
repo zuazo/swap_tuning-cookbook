@@ -17,8 +17,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'support/fake_recipe'
+require_relative '../spec_helper'
+require_relative '../support/fake_recipe'
 require 'recipe_helpers'
 
 describe Chef::SwapTuning::RecipeHelpers, order: :random do
