@@ -1,7 +1,6 @@
 .bundle
 .cache
 .kitchen
-metadata.json
 Gemfile.lock
 Berksfile.lock
 test/kitchen/.kitchen/
