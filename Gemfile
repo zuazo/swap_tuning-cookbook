@@ -9,6 +9,8 @@ chef_version = ENV.key?('CHEF_VERSION') ? ENV['CHEF_VERSION'] : nil
 group :test do
   gem 'rake'
   gem 'berkshelf', '~> 3.1'
+  # https://github.com/berkshelf/berkshelf/issues/1466
+  gem 'faraday', '< 0.9.2'
 end
 
 group :style do
