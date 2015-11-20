@@ -17,11 +17,10 @@ group :style do
 end
 
 group :unit do
-  gem 'chef', chef_version unless chef_version.nil? # Ruby 1.9.3 support
+  gem 'chef', chef_version unless chef_version.nil?
   gem 'simplecov', '~> 0.9'
   gem 'should_not', '~> 1.1'
   gem 'chefspec', '~> 4.1'
-  gem 'ohai', '~> 7.4' if RUBY_VERSION < '2'
 end
 
 group :integration do
