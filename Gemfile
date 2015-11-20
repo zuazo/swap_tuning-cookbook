@@ -8,14 +8,12 @@ chef_version = ENV.key?('CHEF_VERSION') ? ENV['CHEF_VERSION'] : nil
 
 group :test do
   gem 'rake'
-  gem 'berkshelf', '~> 3.1'
-  # https://github.com/berkshelf/berkshelf/issues/1466
-  gem 'faraday', '< 0.9.2'
+  gem 'berkshelf', '~> 4.0'
 end
 
 group :style do
-  gem 'foodcritic', '= 4.0.0'
-  gem 'rubocop', '= 0.33.0'
+  gem 'foodcritic', '~> 5.0.0'
+  gem 'rubocop', '~> 0.35.1'
 end
 
 group :unit do
@@ -39,7 +37,7 @@ end
 
 group :guard do
   gem 'guard', '~> 2.6'
-  gem 'guard-foodcritic', '~> 1.0'
+  gem 'guard-foodcritic', '~> 2.0'
   gem 'guard-rubocop', '~> 1.1'
   gem 'guard-rspec', '~> 4.3'
   # Temporary disabled: Error is: cannot load such file -- guard/kitchen
