@@ -50,7 +50,7 @@ Please, [let us know](https://github.com/zuazo/swap_tuning-cookbook/issues/new?t
 
 ## Required Applications
 
-* Ruby `1.9.3` or higher.
+* Ruby `2` or higher.
 
 Attributes
 ==========
