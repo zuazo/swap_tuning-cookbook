@@ -45,7 +45,7 @@ supports 'redhat'
 supports 'suse'
 supports 'ubuntu'
 
-depends 'swap', '~> 0.3'
+depends 'swap', '~> 2.1'
 
 recipe 'swap_tuning::default', 'Creates the swap file.'
 
